@@ -31,7 +31,7 @@ use Symfony\Component\Config\Loader\LoaderResolver;
  */
 class I18nLoader
 {
-    const ROUTING_PREFIX = '__RG__';
+    const ROUTING_PREFIX = '_';
 
     private $routeExclusionStrategy;
     private $patternGenerationStrategy;
@@ -70,7 +70,7 @@ class I18nLoader
                     $localeRoute = clone $route;
                     $localeRoute->setPath($pattern);
                     $localeRoute->setDefault('_locale', $locale);
-                    $i18nCollection->add($locale.I18nLoader::ROUTING_PREFIX.$name, $localeRoute);
+                    $i18nCollection->add(($locale !== 'fr' ? $locale.I18nLoader::ROUTING_PREFIX : '').$name, $localeRoute);
                 }
             }
         }
